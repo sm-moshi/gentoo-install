@@ -37,14 +37,41 @@
     mkdir /mnt/gentoo
 
 # Gentoo Basic Install
-    cd /mnt/gentoo
-    - get new stage3 https://bouncer.gentoo.org/fetch/root/all/releases/amd64/autobuilds/
-        - wget https://mirror.bytemark.co.uk/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20210502T214503Z.tar.xz
-        - tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
+    - cd /mnt/gentoo
+    - wget https://mirror.bytemark.co.uk/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20210502T214503Z.tar.xz
+    - tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
-    - editing make.conf (add your settings here)
     - nano /mnt/gentoo/etc/portage/make.conf
 
-    - mask webkit-gtk and qtwebengine, because of CPU-cycles (no one needs that shit lol)
     - nano /mnt/gentoo/etc/portage/package.mask
 
+    - cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
+
+    - mount -t proc /proc /mnt/gentoo/proc
+    - mount --rbind /sys /mnt/gentoo/sys
+    - mount --make-rslave /mnt/gentoo/sys
+    - mount --rbind /dev /mnt/gentoo/dev
+    - mount --make-rslave /mnt/gentoo/dev
+    - test -L /dev/shm && rm /dev/shm && mkdir /dev/shm
+    - mount -t tmpfs -o nosuid,nodev,noexec shm /dev/shm
+    - chmod 1777 /dev/shm
+
+    - chroot /mnt/gentoo /bin/bash
+    - source /etc/profile
+    - export PS1="(chroot) $PS1"
+
+    - mount /dev/nvme0n1ps2 /boot (or /dev/sda2)
+
+    - emerge --sync
+    - emerge --oneshot sys-apps/portage
+
+    - eselect profile list
+    - eselect profile set 24
+
+    - echo Europe/Berlin > /etc/timezone/data
+    - emerge --config sys-libs/timezone-data
+
+    - cat locale.gen
+        - de_DE.UTF_8 UTF-8
+    - nano /etc/locale.gen (add your locales)
+    
