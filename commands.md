@@ -2,7 +2,7 @@
 
 # Creating the partitions
 
-'''shell
+```shell
 mkdir /mnt/gentoo
 parted /dev/nvme0n1 or /dev/sda1
     mklabel gpt
@@ -35,7 +35,7 @@ parted /dev/nvme0n1 or /dev/sda1
 
     mkswap /dev/gentoo-vg/swap
     swapon /dev/gentoo-vg/swap
-'''
+```
 
 # Gentoo Basic Install
     - cd /mnt/gentoo
