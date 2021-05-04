@@ -1,20 +1,22 @@
 # Commands to install Gentoo (04/05/2021)
+
 # Creating the partitions
-    mkdir /mnt/gentoo
 
-    parted /dev/nvme0n1 or /dev/sda1
-        mklabel gpt
-        mkpart primary fat32 1MiB 3Mib
-        mkpart primary fat32 3Mib 803MiB
-        mkpart primary 803MiB -1
+'''shell
+mkdir /mnt/gentoo
+parted /dev/nvme0n1 or /dev/sda1
+    mklabel gpt
+    mkpart primary fat32 1MiB 3Mib
+    mkpart primary fat32 3Mib 803MiB
+    mkpart primary 803MiB -1
 
-        name 1 grub
-        name 2 boot
-        name 3 luks
-        set 1 bios_grub on
-        set 2 boot on
-        print
-        quit
+    name 1 grub
+    name 2 boot
+    name 3 luks
+    set 1 bios_grub on
+    set 2 boot on
+    print
+    quit
 
     mkfs.vfat /dev/nvme0n1 or /dev/sda1
     mkfs.vfat -F32 /dev/nvme0n1p2 or /dev/sda2
@@ -33,8 +35,7 @@
 
     mkswap /dev/gentoo-vg/swap
     swapon /dev/gentoo-vg/swap
-
-    mkdir /mnt/gentoo
+'''
 
 # Gentoo Basic Install
     - cd /mnt/gentoo
@@ -85,7 +86,7 @@
     - touch /etc/portage/package.license
     - touch /etc/portage/package.unmask
 
-    - time emerge --ask --verbose --update --deep --with-bdeps=y --newuse  --keep-going --backtrack=30 @world
+    - emerge --ask --verbose --update --deep --with-bdeps=y --newuse  --keep-going --backtrack=30 @world
 
     - gcc-config --list-profiles
     - gcc-config 2
@@ -96,6 +97,7 @@
     - emerge --ask app-editors/nano
 
 # Configure /etc/fstab
+    # run blkid to get UUIDS
     - blkid
 
-    # Test
+    - a 
