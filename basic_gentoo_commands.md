@@ -134,7 +134,7 @@ LUKS="yes"
 ...
 ```
 
-# Install ad configure GRUB
+# Install and configure GRUB
 ```shell
 echo "sys-boot/grub device-mapper" > /etc/portage/package.use/grub
 emerge --ask --verbose sys-boot/grub
