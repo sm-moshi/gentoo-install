@@ -1,6 +1,6 @@
 # Commands to install basic Gentoo (04/05/2021)
 
-# Creating the partitions
+## Creating the partitions
 
 ```shell
 mkdir /mnt/gentoo
@@ -37,7 +37,7 @@ mkswap /dev/gentoo-vg/swap
 swapon /dev/gentoo-vg/swap
 ```
 
-# Gentoo Basic Install
+## Gentoo Basic Install
 ```shell
 cd /mnt/gentoo
 wget https://mirror.bytemark.co.uk/gentoo/releases/amd64/autobuilds/current-stage3-amd64-systemd/stage3-amd64-systemd-20210502T214503Z.tar.xz
@@ -98,7 +98,7 @@ emerge --ask --oneshut --usepkg=n sys-devel/libtool
 emerge --ask app-editors/nano
 ```
 
-# Configure /etc/fstab - add LUKS partition and boot partition
+## Configure /etc/fstab - add LUKS partition and boot partition
 ```shell
 blkid
 cat /etc/fstab
@@ -106,7 +106,7 @@ nano /etc/fstab
 > # add your partitions according to the blkid output
 ```
 
-# Install kernel sources and firmware
+## Install kernel sources and firmware
 ```shell
 emerge --ask --verbose sys-kernel/gentoo-sources
 emerge --ask --verbose sys-kernel/genkernel
@@ -114,18 +114,18 @@ emerge --ask --verbose sys-fs/cryptsetup
 emerge --ask --verbose sys-kernel/linux-firmware
 ```
 
-# If you need it, install intel microcode
+## If you need it, install intel microcode
 ```shell
 echo "sys-firmware/intel-microcde initramfs > etc/portage/package.use/intel-microcode"
 emerge --ask --verbose sys-firmware/intel-microcode
 ```
 
-# Configure genkernel.conf
+## Configure genkernel.conf
 ```shell
 cp -p /etc/genkernel.conf /etc/genkernel.conf.ORIG
 nano /etc/genkernel.conf
 
-# add some stuff for LUKS and LVM
+> # add some stuff for LUKS and LVM
 ...
 MAKEOPTS="$(portageq envvar MAKEOPTS)"
 ...
@@ -134,8 +134,16 @@ LVM="yes"
 LUKS="yes"
 ...
 ```
+## Compile your kernel
+```shell
+genkernel all
+> # configure it according to your needs (depends on hardware)
+> # for example remove everything related to AMD if you're using intel -
+> # except when using an AMD GPU then it get's tricky,
+> # but I'm not going to explain kernel setings here.
+```
 
-# Install and configure GRUB
+## Install and configure GRUB
 ```shell
 echo "sys-boot/grub device-mapper" > /etc/portage/package.use/grub
 emerge --ask --verbose sys-boot/grub
@@ -150,7 +158,7 @@ nano /etc/default/grub
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
-# set root passwd
+## set root passwd
 ```shell
 passwd
 ```
