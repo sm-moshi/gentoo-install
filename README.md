@@ -6,6 +6,8 @@ We're gonna install Gentoo with:
 - LUKS
 - LVM
 - portage compilation in tmpfs
+
+Work in progress:
 - KDE Plasma
 - LibreOffice
 - Thunderbird
