@@ -92,12 +92,6 @@ touch /etc/portage/package.unmask
 
 emerge --ask --verbose --update --deep --with-bdeps=y --newuse --keep-going --backtrack=30 @world
 
-gcc-config --list-profiles
-gcc-config 2
-source /etc/profile
-export PS1="(chroot) $PS1"
-
-emerge --ask --oneshut --usepkg=n sys-devel/libtool
 emerge --ask app-editors/nano
 ```
 
