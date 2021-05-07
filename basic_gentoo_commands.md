@@ -4,19 +4,19 @@
 
 ```shell
 mkdir /mnt/gentoo
-parted /dev/nvme0n1 or /dev/sda1
-    mklabel gpt
-    mkpart primary fat32 1MiB 3Mib
-    mkpart primary fat32 3Mib 803MiB
-    mkpart primary 803MiB -1
 
-    name 1 grub
-    name 2 boot
-    name 3 luks
-    set 1 bios_grub on
-    set 2 boot on
-    print
-    quit
+parted /dev/nvme0n1 or /dev/sda1
+> mklabel gpt
+> mkpart primary fat32 1MiB 3Mib
+> mkpart primary fat32 3Mib 803MiB
+> mkpart primary 803MiB -1
+> name 1 grub
+> name 2 boot
+> name 3 luks
+> set 1 bios_grub on
+> set 2 boot on
+> print
+> quit
 
 mkfs.vfat /dev/nvme0n1 or /dev/sda1
 mkfs.vfat -F32 /dev/nvme0n1p2 or /dev/sda2
@@ -44,7 +44,7 @@ wget https://mirror.bytemark.co.uk/gentoo/releases/amd64/autobuilds/current-stag
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
 nano /mnt/gentoo/etc/portage/make.conf
-
+> # put ur flags in here (you can find examples in my gentoo-settings repo)
 nano /mnt/gentoo/etc/portage/package.mask
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
@@ -74,8 +74,8 @@ echo Europe/Berlin > /etc/timezone/data
 emerge --config sys-libs/timezone-data
 
 cat locale.gen
-nano /etc/locale.gen (add your locales)
-    - de_DE.UTF_8 UTF-8
+nano /etc/locale.gen
+> de_DE.UTF_8 UTF-8 # add your locales in my case the german ones
 locale-gen
 eselect locale list
 eselect locale set 3
@@ -103,6 +103,7 @@ emerge --ask app-editors/nano
 blkid
 cat /etc/fstab
 nano /etc/fstab
+> # add your partitions according to the blkid output
 ```
 
 # Install kernel sources and firmware
@@ -141,11 +142,11 @@ emerge --ask --verbose sys-boot/grub
 grub-install --target=x86_64-efi --efi-directory=/boot
 
 blkid  | grep crypto_LUKS
-    - copy UUID, add it to /etc/default/grub, add systemd
+> # copy UUID, add it to /etc/default/grub, add systemd
 
 cp /etc/default/grub /etc/default/grub.ORIG
 nano /etc/default/grub
-    - GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd dolvm crypt_root=UUID=blablabla root=/dev/mapper/gentoo-vg-root"
+> GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd dolvm crypt_root=UUID=blablabla root=/dev/mapper/gentoo-vg-root"
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
