@@ -46,6 +46,9 @@ tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 nano /mnt/gentoo/etc/portage/make.conf
 > # put ur flags in here (you can find examples in my gentoo-settings repo)
 nano /mnt/gentoo/etc/portage/package.mask
+> # I'm always masking the following, because they're evil CPU hogs:
+> # dev-qt/qtwebengine
+> # net-libs/webkit-gtk
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 
@@ -105,6 +108,16 @@ cat /etc/fstab
 nano /etc/fstab
 > # add your partitions according to the blkid output
 ```
+### Put some stuff in tmpfs for less SSD cycles and faster compile times
+```shell
+nano /etc/fstab
+> my example:
+> tmpfs     /tmp                  tmpfs     defaults,size=1G                                                  0 0
+> tmpfs     /run                  tmpfs     size=100M                                                         0 0
+> tmpfs     /var/tmp/portage      tmpfs     size=4G,uid=portage,gid=portage,mode=775,nosuid,noatime,nodev     0 0
+```
+Read the following link in the Gentoo Wiki for how to set this up:
+https://wiki.gentoo.org/wiki/Portage_TMPDIR_on_tmpfs
 
 ## Install kernel sources and firmware
 ```shell
