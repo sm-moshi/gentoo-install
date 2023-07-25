@@ -1,5 +1,7 @@
 # Install commands for a basic daily-usable gentoo install 
 
+## Currently working on a guide for UTM/QEMU on M2 Pro architecture.
+
 We're gonna install Gentoo with:
 - systemd
 - UEFI
