@@ -1,0 +1,36 @@
+# These settings were set by the catalyst build script that automatically
+# built this stage.
+# Please consult /usr/share/portage/config/make.conf.example for a more
+# detailed example.
+COMMON_FLAGS="-O3 -pipe"              #-march=armv8-a+crypto+crc+lse+rcpc+rdma+dotprod+sha3+fp16fml+sb+flagm+pauth"
+CFLAGS="${COMMON_FLAGS} -flto=thin"
+CXXFLAGS="${COMMON_FLAGS} -flto=thin"
+FCFLAGS="${COMMON_FLAGS}"
+FFLAGS="${COMMON_FLAGS}"
+
+# WARNING: Changing your CHOST is not something that should be done lightly.
+# Please consult https://wiki.gentoo.org/wiki/Changing_the_CHOST_variable before changing.
+CHOST="aarch64-unknown-linux-gnu"
+
+EMERGE_DEFAULT_OPTS="--with-bdeps=y --verbose --jobs=2 --keep-going=y --complete-graph=y"
+FEATURES="ebuild-locks split-log parallel-fetch parallel-install"
+
+MAKEOPTS="-j10"
+ACCEPT_LICENSE="*"
+ACCEPT_KEYWORDS="~arm64"
+GRUB_PLATFORMS="efi-64"
+INPUT_DEVICES="libinput"
+VIDEO_CARDS="virgl fbdev"
+CPU_FLAGS_ARM="edsp neon thumb vfp vfpv3 vfpv4 vfp-d32 aes sha1 sha2 crc32 v4 v5 v6 v7 v8 thumb2"
+
+USE="-handbook -examples -doc -emacs -accessibility -bindist -debug -cdrom -test -webengine"
+USE="$USE -dvd -dvb -dvdr -gps cryptsetup display-manager networkmanager"
+USE="$USE -gtk -gnome X kde qt5 qt zstd sddm grub lto -telemetry"
+USE="$USE nano vim zsh wallpapers branding clang -X opengl"
+
+L10N="de de-DE en en-US en-GB"
+
+# NOTE: This stage was built with the bindist Use flag enabled
+
+# This sets the language of build output to English.
+# Please keep this setting intact when reporting bugs.
