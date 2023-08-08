@@ -14,3 +14,5 @@ efibootmgr --disk /dev/nvme0n1 --part 1 --create --label "Gentoo ZFS 5.15.9" --l
 efibootmgr --disk /dev/nvme0n1 --part 1 --create --label "Gentoo ZFS 5.15.9 with zswap" --loader "efi\gentoo\vmlinuz-5.15.9-gentoo-dist.efi" --unicode 'root=ZFS=rpool/ROOT/gentoo ro initrd=\efi\gentoo\amd-uc.img initrd=\efi\gentoo\initramfs-5.15.9-gentoo-dist.img resume=/dev/nvme0n1p2 resume=/dev/nvme1n1p2 zswap.enabled=1 zswap.compressor=zstd'
 
 Mama: 53505535941854647824
+
+emerge -a networkmanager cifs-utils nfs-utils rng-tools

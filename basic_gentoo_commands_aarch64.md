@@ -21,6 +21,8 @@ VM settings in QEMU:
 
 ```shell
 
+parted -a optimal /dev/sdX
+
 unit mib
 mklabel gpt
 
@@ -34,7 +36,7 @@ set 2 BOOT on
 
 mkpart primary 515 -1
 name 3 lvm
-set 3 lvm o 
+set 3 lvm on
 
 print
 quit
@@ -42,7 +44,7 @@ quit
 
 ```shell 
 
-mkfs.vfat -F32 /dev/nvme0n1p2
+mkfs.vfat -F32 /dev/vda1
 
 cryptsetup luksFormat -c aes-xts-plain64 -s 512 /dev/nvme0n1p3
 
@@ -51,11 +53,9 @@ cryptsetup luksOpen /dev/nvme0n1p3 lvm
 pvcreate /dev/mapper/lvm
 vgcreate gentoo-vg /dev/mapper/lvm
 lvcreate -L 12G -n swap gentoo-vg
-lvcreate -L 120G -n root gentoo-vg
-lvcreate -l 100%FREE -n home gentoo-vg
+lvcreate -l 100% root gentoo-vg
 
 mkfs.ext4 /dev/mapper/gentoo--vg-root
-mkfs.ext4 /dev/mapper/gentoo--vg-home
 
 mkswap /dev/mapper/gentoo--vg-swap
 swapon /dev/mapper/gentoo--vg-swap
@@ -76,8 +76,8 @@ nano /mnt/gentoo/etc/portage/make.conf
 > # put ur flags in here (you can find examples in my gentoo-settings repo)
 
 > # I'm always masking the following, because they're evil CPU hogs:
-cat "dev-qt/qtwebengine" >> /mnt/gentoo/etc/portage/package.mask/cpu-hogs
-cat "net-libs/webkit-gtk" >> /mnt/gentoo/etc/portage/package.mask/cpu-hogs
+echo "dev-qt/qtwebengine" >> /mnt/gentoo/etc/portage/package.mask/cpu-hogs
+echo "net-libs/webkit-gtk" >> /mnt/gentoo/etc/portage/package.mask/cpu-hogs
 
 cp --dereference /etc/resolv.conf /mnt/gentoo/etc/
 
@@ -93,7 +93,7 @@ mount -t tmpfs -o nosuid,nodev,noexec shm /dev/shm
 chmod 1777 /dev/shm
 
 mount /dev/mapper/gentoo--vg-home /mnt/gentoo/home
-mount /dev/nvme0n1ps2 /mnt/gentoo/boot
+mount /dev/nvme0n1p2 /mnt/gentoo/boot
 
 chroot /mnt/gentoo /bin/bash
 source /etc/profile
@@ -127,11 +127,11 @@ mkdir -p /etc/portage/package.unmask
 
 ```shell
 # mount Portage TMPDIR on tmpfs
-cat "tmpfs /var/tmp/portage tmpfs size=8G,uid=portage,gid=portage,mode=775 0 0" >> /etc/fstab
+echo "tmpfs /var/tmp/portage tmpfs size=8G,uid=portage,gid=portage,mode=775 0 0" >> /etc/fstab
 mount /var/tmp/portage
 # create per-package choices for tmpfs
 mkdir /etc/portage/env
-cat "PORTAGE_TMPDIR=/var/tmp/notmpfs" >> /etc/portage/env/notmpfs.conf
+echo "PORTAGE_TMPDIR=/var/tmp/notmpfs" >> /etc/portage/env/notmpfs.conf
 
 mkdir /var/tmp/notmpfs
 chown portage:portage /var/tmp/notmpfs
@@ -218,3 +218,4 @@ grub-mkconfig -o /boot/grub/grub.cfg
 ```shell
 passwd
 ```
+ 

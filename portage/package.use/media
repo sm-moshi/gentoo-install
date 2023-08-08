@@ -1,0 +1,6 @@
+media-libs/libsndfile minimal
+# required by virtual/opengl-7.0-r2::gentoo
+# required by media-video/ffmpeg-6.0-r6::gentoo[opengl]
+# required by media-plugins/gst-plugins-libav-1.22.3::gentoo
+# required by gst-plugins-libav (argument)
+>=media-libs/mesa-23.1.5 X

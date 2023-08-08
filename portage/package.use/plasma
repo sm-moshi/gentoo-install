@@ -1,0 +1,52 @@
+kde-plasma/plasma-meta browser-integration colord crash-handler crypt desktop-portal discover
+kde-plasma/plasma-meta firewall gtk kwallet -plymouth -smart -thunderbolt
+kde-apps/kde-apps-meta admin graphics multimedia network -pim utils
+kde-apps/kde-apps-meta -education -games sdk
+kde-apps/kdeadmin-meta cron
+kde-apps/kdegraphics-meta color-management -scanner
+kde-apps/kdesdk-meta -mercurial -subversion
+kde-apps/kdenetwork-meta -telepathy -bittorrent dropbox samba
+kde-apps/kdeutils-meta 7zip -floppy gpg lrz rar
+kde-apps/kate-addons filebrowser projects snippets sql
+kde-plasma/plasma-firewall -firewalld ufw
+kde-plasma/discover -firmware -snap flatpak
+# Build graphical frontend for kde-frameworks/kdesu (requires X)
+kde-plasma/kde-cli-tools kdesu X
+# xembed system tray support for legacy applications
+kde-plasma/plasma-meta legacy-systray
+#
+>=dev-qt/qtgui-5.15.10-r1 X
+# required by kde-plasma/polkit-kde-agent-5.27.7::gentoo
+# required by kde-frameworks/kauth-5.108.0::gentoo
+# required by kde-frameworks/kconfigwidgets-5.108.0::gentoo
+# required by kde-frameworks/kiconthemes-5.108.0::gentoo
+>=kde-frameworks/kwindowsystem-5.108.0 X
+# required by dev-qt/qtgui-5.15.10::gentoo[-gles2-only]
+# required by dev-qt/qtwidgets-5.15.10-r1::gentoo
+# required by dev-qt/qtsvg-5.15.10::gentoo
+# required by kde-frameworks/kiconthemes-5.108.0::gentoo
+# required by kde-plasma/polkit-kde-agent-5.27.7::gentoo
+# required by kde-frameworks/kauth-5.108.0::gentoo
+# required by kde-frameworks/kconfigwidgets-5.108.0::gentoo
+>=media-libs/libglvnd-1.6.0 X
+# required by dev-qt/qtgui-5.15.10::gentoo[X]
+# required by dev-qt/qtwidgets-5.15.10-r1::gentoo
+# required by dev-qt/qtsvg-5.15.10::gentoo
+# required by kde-frameworks/kiconthemes-5.108.0::gentoo
+# required by kde-plasma/polkit-kde-agent-5.27.7::gentoo
+# required by kde-frameworks/kauth-5.108.0::gentoo
+# required by kde-frameworks/kconfigwidgets-5.108.0::gentoo
+>=x11-libs/libxkbcommon-1.5.0 X
+# required by media-libs/libcanberra-0.30-r7::gentoo[gtk3]
+# required by kde-frameworks/knotifications-5.108.0::gentoo[-phonon]
+# required by kde-frameworks/kwallet-5.108.0::gentoo
+# required by kde-frameworks/kio-5.108.0::gentoo[kwallet]
+# required by kde-frameworks/kinit-5.108.0::gentoo
+# required by kde-frameworks/kded-5.108.0::gentoo
+>=x11-libs/gtk+-3.24.38 X
+# required by x11-libs/gtk+-3.24.38::gentoo
+# required by x11-themes/adwaita-icon-theme-44.0::gentoo
+>=media-libs/libepoxy-1.5.10-r2 X
+# required by x11-libs/gtk+-3.24.38::gentoo
+# required by x11-themes/adwaita-icon-theme-44.0::gentoo
+>=x11-libs/cairo-1.17.8 X

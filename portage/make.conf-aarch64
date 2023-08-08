@@ -2,9 +2,9 @@
 # built this stage.
 # Please consult /usr/share/portage/config/make.conf.example for a more
 # detailed example.
-COMMON_FLAGS="-march=native -O2 -pipe"
-CFLAGS="${COMMON_FLAGS}"
-CXXFLAGS="${COMMON_FLAGS}"
+COMMON_FLAGS="-O3 -pipe"
+CFLAGS="${COMMON_FLAGS}" #-flto=thin"
+CXXFLAGS="${COMMON_FLAGS}" #-flto=thin"
 FCFLAGS="${COMMON_FLAGS}"
 FFLAGS="${COMMON_FLAGS}"
 
@@ -14,7 +14,7 @@ CHOST="aarch64-unknown-linux-gnu"
 
 # NOTE: This stage was built with the bindist Use flag enabled
 
-EMERGE_DEFAULT_OPTS="--with-bdeps=y --verbose --jobs=2"
+EMERGE_DEFAULT_OPTS="--with-bdeps=y --verbose --jobs=2 --keep-going=y --complete-graph=y"
 FEATURES="ebuild-locks split-log parallel-fetch parallel-install"
 
 MAKEOPTS="-j10"
@@ -22,13 +22,13 @@ ACCEPT_LICENSE="*"
 ACCEPT_KEYWORDS="~arm64"
 GRUB_PLATFORMS="efi-64"
 INPUT_DEVICES="libinput"
-VIDEO_CARDS="virgl fbdev"
+VIDEO_CARDS="virgl"
 CPU_FLAGS_ARM="edsp neon thumb vfp vfpv3 vfpv4 vfp-d32 aes sha1 sha2 crc32 v4 v5 v6 v7 v8 thumb2"
 
 USE="-handbook -examples -doc -emacs -accessibility -bindist -debug -cdrom -test -webengine"
 USE="$USE -dvd -dvb -dvdr -gps grub cryptsetup display-manager networkmanager"
-USE="$USE -gtk -gnome X kde qt5 qt plasma opengl wayland systemd ztd sddm"
-USE="$USE pulseaudio pipewire policykit python cups nano vim zsh wallpapers branding"
+USE="$USE -gtk -gnome -X qt5 qt wayland systemd zstd sddm"
+USE="$USE -cups nano vim zsh lto pgo -telemetry clang"
 
 L10N="de de-DE en en-US en-GB"
 
