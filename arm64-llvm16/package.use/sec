@@ -1,0 +1,4 @@
+app-admin/sudo offensive -sendmail
+app-admin/doas persist
+mail-mta/proton-mail-bridge -gui
+app-crypt/gnupg tools

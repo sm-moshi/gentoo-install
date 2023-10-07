@@ -5,9 +5,6 @@
 We're gonna install Gentoo with:
 - systemd
 - UEFI
-- LUKS
-- LVM
-- portage compilation in tmpfs
 
 Work in progress:
 - KDE Plasma

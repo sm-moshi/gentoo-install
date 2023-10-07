@@ -1,0 +1,5 @@
+dev-lang/rust-bin rust-analyzer rustfmt
+virtual/rust rustfmt
+dev-lang/rust system-llvm system-bootstrap rust-analyzer rustfmt rust-src
+sys-devel/clang-common default-compiler-rt default-lld llvm-libunwind
+sys-devel/binutils gold

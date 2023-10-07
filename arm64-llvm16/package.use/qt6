@@ -1,0 +1,2 @@
+# required by dev-qt/qtwayland-6.5.2-r1::gentoo
+>=dev-qt/qtbase-6.5.2 egl

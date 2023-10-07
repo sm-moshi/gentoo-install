@@ -1,0 +1,3 @@
+app-editors/vim -sound vim-pager -X
+app-editors/neovim nvimpager
+x11-libs/gtk+ vim-syntax

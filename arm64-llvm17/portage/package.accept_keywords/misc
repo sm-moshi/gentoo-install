@@ -1,0 +1,7 @@
+app-portage/emlop ~*
+app-backup/mkstage4 ~*
+sys-process/bpytop ~*
+app-misc/screenfetch ~*
+sys-process/bpytop ~*
+app-misc/cpufetch **
+x11-apps/ocs-url **

@@ -1,0 +1,4 @@
+# Firefox
+www-client/firefox gmp-autoupdate jumbo-build geckodriver hwaccel openh264 -pgoy
+# Thunderbird
+mail-client/thunderbird hwaccel -openh264 -pulseaudio

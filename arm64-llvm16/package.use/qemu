@@ -1,0 +1,3 @@
+app-emulation/qemu vhostnet virgl virtfs vnc spice nfs lzo fuse bzip2
+#app-emulation/qemu-guest-agent
+app-emulation/spice-vdagent gtk

@@ -1,0 +1,43 @@
+# created by eselect-repo
+
+
+[gentoo]
+location = /var/db/repos/gentoo
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/gentoo.git
+
+[guru]
+location = /var/db/repos/guru
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/guru.git
+
+
+[mv]
+location = /var/db/repos/mv
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/mv.git
+
+[kde]
+location = /var/db/repos/kde
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/kde.git
+
+[qt]
+location = /var/db/repos/qt
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/qt.git
+
+[ppfeufer-gentoo-overlay]
+location = /var/db/repos/ppfeufer-gentoo-overlay
+sync-type = git
+sync-uri = https://github.com/gentoo-mirror/ppfeufer-gentoo-overlay.git
+
+[miapersonal]
+location = /var/db/repos/miapersonal
+sync-type = git
+sync-uri = https://github.com/Fuchskaute/miapersonal.git
+
+[sm_overlay]
+location = /var/db/repos/sm_overlay
+sync-type = git
+sync-uri = https://github.com/sm-moshi/sm_overlay.git

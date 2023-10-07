@@ -1,0 +1,13 @@
+app-portage/emlop ~*
+app-backup/mkstage4 ~*
+sys-process/bpytop ~*
+app-misc/screenfetch ~*
+net-im/discord **
+sys-process/bpytop ~*
+dev-libs/sentry-native ~*
+app-cdr/cdrtools **
+dev-vcs/github-desktop ~*
+net-im/discord-ptb-bin ~*
+net-im/discord-canary-bin ~*
+app-misc/cpufetch **
+x11-apps/ocs-url **

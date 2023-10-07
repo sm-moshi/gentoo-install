@@ -1,0 +1,4 @@
+app-portage/eix::mv optimization strong-optimization security strong-security tools jumbo-build -protobuf
+app-shells/bash plugins
+sys-block/parted device-mapper
+media-video/mediainfo -wxwidgets

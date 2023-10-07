@@ -1,0 +1,14 @@
+# Firefox
+>www-client/firefox-117.0 -pgo
+www-client/firefox gmp-autoupdate jumbo-build geckodriver hwaccel openh264
+# required by www-client/firefox-116.0.3::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.13.0 postproc
+# required by www-client/firefox-116.0.3::gentoo[X,pgo]
+# required by firefox (argument)
+>=x11-base/xorg-server-21.1.8-r2 xvfb
+# required by www-client/firefox-116.0.3::gentoo[-X,pgo]
+# required by firefox (argument)
+>=gui-libs/wlroots-0.16.2-r1 tinywl
+# Thunderbird
+mail-client/thunderbird hwaccel -pulseaudio

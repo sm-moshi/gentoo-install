@@ -1,0 +1,6 @@
+# Bug 912437
+# dev-libs/glib-2.76.4 - ../.../meson.build:
+# ERROR: <PythonExternalProgram python3 -> [/var/tmp/portage/dev-libs/glib-2.76.4/temp/py
+# dev-libs/glib: disable py3.12
+# See the discussion in bug #911418.
+# dev-lang/python:3.12

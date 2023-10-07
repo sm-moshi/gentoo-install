@@ -1,0 +1,4 @@
+# Clang does not support -flto-partition
+# ERROR: net-misc/networkmanager-1.44.0::gentoo failed (setup phase):
+# Please use gcc or turn off USE=lto flag when building with clang
+<=net-misc/networkmanager-1.44.0 -lto

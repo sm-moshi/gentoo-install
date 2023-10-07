@@ -20,12 +20,11 @@ profile-formats = portage-2
 ->>
 
 cd /var/db/repos/local/profiles
-mkdir llvm-systemd-plasma && echo 7 >llvm-systemd-plasma/eapi
+mkdir systemd-llvm-plasma && echo 8 >systemd-llvm-plasma/eapi
 
-nano /var/db/repos/local/profiles/llvm-systemd-plasma/parent
+nano /var/db/repos/local/profiles/systemd-llvm-plasma/parent
 ->
 gentoo:default/linux/arm64/17.0/systemd/llvm/merged-usr
 gentoo:targets/desktop/plasma
 
-echo `portageq envvar ARCH` llvm-systemd-plasma dev >> /var/db/repos/local/profiles/profiles.desc
-
+echo `portageq envvar ARCH` systemd-llvm-plasma dev >> /var/db/repos/local/profiles/profiles.desc

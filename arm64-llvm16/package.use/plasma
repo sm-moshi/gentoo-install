@@ -1,0 +1,87 @@
+kde-plasma/plasma-meta browser-integration colord crash-handler crypt desktop-portal discover
+kde-plasma/plasma-meta firewall gtk kwallet -plymouth -smart -thunderbolt
+kde-plasma/kwin multimedia
+kde-plasma/plasma-workspace appstream
+kde-plasma/plasma-welcome discover telemetry
+kde-plasma/kdeplasma-addons share
+kde-plasma/plasma-firewall -firewalld ufw
+kde-plasma/discover -firmware -snap flatpak
+kde-apps/kde-apps-meta admin graphics multimedia network -pim utils
+kde-apps/kde-apps-meta -education games -sdk
+kde-apps/kdeadmin-meta cron
+kde-apps/kdegraphics-meta color-management scanner
+kde-apps/kdesdk-meta -mercurial -subversion
+kde-apps/kdenetwork-meta -telepathy -bittorrent -dropbox samba
+kde-apps/kdeutils-meta 7zip -floppy gpg lrz rar
+app-arch/p7zip rar
+kde-apps/kate-addons filebrowser projects snippets -sql
+kde-apps/kio-extras nfs samba
+kde-frameworks/kfilemetadata ffmpeg
+app-cdr/cdrtools schily-tools
+# Build graphical frontend for kde-frameworks/kdesu (requires X)
+kde-plasma/kde-cli-tools kdesu X
+# embed system tray support for legacy applications
+kde-plasma/plasma-meta legacy-systray
+#
+sys-apps/xdg-desktop-portal screencast
+# required by dev-qt/qtwayland-5.15.10-r4::gentoo
+# required by kde-frameworks/kwayland-5.108.0::gentoo
+# required by app-crypt/pinentry-1.2.1-r3::gentoo[wayland,qt5]
+# required by app-crypt/gnupg-2.4.3::gentoo
+# required by app-crypt/gpgme-1.21.0::gentoo
+# required by app-portage/portage-utils-0.96.1::gentoo[-static,qmanifest]
+# required by app-admin/perl-cleaner-2.31::gentoo[-pkgcore]
+# required by dev-lang/perl-5.36.1-r3::gentoo
+# required by virtual/perl-CPAN-2.360.0::gentoo
+# required by dev-lang/perl-5.38.0-r1::gentoo[-minimal]
+# required by virtual/perl-File-Path-2.180.0-r2::gentoo
+# required by dev-perl/File-DesktopEntry-0.220.0-r1::gentoo
+# required by dev-perl/File-MimeInfo-0.330.0::gentoo
+# required by x11-misc/xdg-utils-1.1.3_p20210805-r1::gentoo
+# required by kde-frameworks/kf-env-5::gentoo
+# required by dev-libs/plasma-wayland-protocols-1.10.0::gentoo
+>=dev-qt/qtgui-5.15.10-r1 egl
+# required by x11-misc/xdg-utils-1.1.3_p20210805-r1::gentoo
+# required by kde-frameworks/kf-env-5::gentoo
+# required by dev-libs/plasma-wayland-protocols-1.10.0::gentoo
+# required by kde-frameworks/kwayland-5.108.0::gentoo
+# required by app-crypt/pinentry-1.2.1-r3::gentoo[wayland,qt5]
+# required by app-crypt/gnupg-2.4.3::gentoo
+# required by app-crypt/gpgme-1.21.0::gentoo
+# required by app-portage/portage-utils-0.96.1::gentoo[-static,qmanifest]
+# required by app-admin/perl-cleaner-2.31::gentoo[-pkgcore]
+# required by dev-lang/perl-5.36.1-r3::gentoo
+# required by virtual/perl-CPAN-2.360.0::gentoo
+# required by dev-lang/perl-5.38.0-r1::gentoo[-minimal]
+# required by virtual/perl-File-Path-2.180.0-r2::gentoo
+# required by dev-perl/File-DesktopEntry-0.220.0-r1::gentoo
+# required by dev-perl/File-MimeInfo-0.330.0::gentoo
+>=app-text/xmlto-0.0.28-r10 text
+# required by kde-plasma/kwin-5.27.7-r2::gentoo[multimedia]
+# required by kde-plasma/libkworkspace-5.27.7::gentoo
+# required by kde-plasma/plasma-workspace-5.27.7-r1::gentoo
+# required by virtual/notification-daemon-0::gentoo[kde]
+# required by x11-libs/libnotify-0.8.2::gentoo
+# required by media-video/vlc-3.0.18-r3::gentoo[libnotify]
+# required by media-libs/phonon-vlc-0.11.3-r1::gentoo
+# required by media-libs/phonon-4.11.1-r2::gentoo[vlc]
+# required by kde-apps/kio-extras-23.04.3::gentoo[phonon]
+>=dev-qt/qtmultimedia-5.15.10 gstreamer
+# required by kde-misc/kweather-23.04.3::gentoo
+# required by kde-apps/kdeutils-meta-23.04.3::gentoo
+# required by kde-apps/kde-apps-meta-23.04.3::gentoo[utils]
+# required by kde-apps-meta (argument)
+>=dev-qt/qtpositioning-5.15.10 geoclue
+# required by kde-apps/kdenlive-23.04.3::gentoo
+# required by kde-apps/kdemultimedia-meta-23.04.3::gentoo
+# required by kde-apps/kde-apps-meta-23.04.3::gentoo[multimedia]
+# required by kde-apps-meta (argument)
+>=media-video/ffmpeg-6.0-r6 libass
+# required by (kde-plasma/xdg-desktop-portal-kde-5.27.7-r1:5/5::gentoo
+>=dev-qt/qtprintsupport-5.15.9 cups
+# required by kde-apps/kdenlive-23.08.0::gentoo
+# required by kde-apps/kdemultimedia-meta-23.08.0::gentoo
+# required by kde-apps/kde-apps-meta-23.08.0::gentoo[multimedia]
+# required by @selected
+# required by @world (argument)
+>=media-libs/mlt-7.18.0 frei0r

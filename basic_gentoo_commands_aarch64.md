@@ -1,4 +1,4 @@
-# Commands to install basic Gentoo with systemd, Luks and LVM in QEMU (UTM) on Apple M2 Pro (2023/07/25)
+# Commands to install basic Gentoo with systemd, LLVM and ext as root in QEMU (UTM) on Apple M2 Pro (2023/07/25)
 
 https://gist.github.com/setkeh/42b1d6a86bf31001b797e991ae7296d8
 https://wiki.gentoo.org/wiki/QEMU/Linux_guest#Kernel
@@ -12,55 +12,41 @@ https://wiki.gentoo.org/wiki/Talk:QEMU/Linux_guest#Display
 VM settings in QEMU:
 
 - Architecture: ARM64 (aarch64)
-- Machine: QEMU 8.0 ARM Virtual Machine (alias of virt-8.0) (virt)
-- CPU Cores: 10
-- RAM: 12 GB
+- Machine: QEMU 7.2 ARM Virtual Machine (alias of virt-7.2 (virt)
+- CPU Cores: 12
+- RAM: 14 GB
 - ...
 
 ## Creating the partitions
 
 ```shell
 
-parted -a optimal /dev/sdX
+parted -a optimal /dev/vda
 
 unit mib
 mklabel gpt
 
-mkpart primary 1 3
-name 1 grub
-set 1 bios_grub on
+mkpart primary fat32 1 1024
+name 1 boot
+set 1 BOOT on
 
-mkpart primary fat32 3 515
-name 2 boot
-set 2 BOOT on
+mkpart primary 1024 15360
+name 2 swap
 
-mkpart primary 515 -1
-name 3 lvm
-set 3 lvm on
+mkpart primary 15360 -1
+name 3 root
 
 print
 quit
-```
 
 ```shell 
 
 mkfs.vfat -F32 /dev/vda1
+mkswap /dev/vda2
+mkfs.ext4 -L 'root' /dev/vda3
 
-cryptsetup luksFormat -c aes-xts-plain64 -s 512 /dev/nvme0n1p3
-
-cryptsetup luksOpen /dev/nvme0n1p3 lvm
-
-pvcreate /dev/mapper/lvm
-vgcreate gentoo-vg /dev/mapper/lvm
-lvcreate -L 12G -n swap gentoo-vg
-lvcreate -l 100% root gentoo-vg
-
-mkfs.ext4 /dev/mapper/gentoo--vg-root
-
-mkswap /dev/mapper/gentoo--vg-swap
-swapon /dev/mapper/gentoo--vg-swap
-
-mount /dev/mapper/gentoo--vg-root /mnt/gentoo
+swapon /dev/vda2
+mount /dev/vda3 /mnt/gentoo
 ```
 
 ## Gentoo Basic Install
@@ -68,7 +54,7 @@ mount /dev/mapper/gentoo--vg-root /mnt/gentoo
 ```shell
 cd /mnt/gentoo
 
-wget https://mirror.leaseweb.com/gentoo/releases/arm64/autobuilds/current-stage3-arm64-desktop-systemd-mergedusr/stage3-arm64-desktop-systemd-mergedusr-20230723T233352Z.tar.xz
+wget https://mirror.leaseweb.com/gentoo/releases/arm64/autobuilds/current-stage3-arm64-llvm-systemd-mergedusr/stage3-arm64-llvm-systemd-mergedusr-20230827T234643Z.tar.xz
 
 tar xpvf stage3-*.tar.xz --xattrs-include='*.*' --numeric-owner
 
@@ -92,8 +78,7 @@ test -L /dev/shm && rm /dev/shm && mkdir /dev/shm
 mount -t tmpfs -o nosuid,nodev,noexec shm /dev/shm
 chmod 1777 /dev/shm
 
-mount /dev/mapper/gentoo--vg-home /mnt/gentoo/home
-mount /dev/nvme0n1p2 /mnt/gentoo/boot
+mount /dev/vda1 /mnt/gentoo/boot
 
 chroot /mnt/gentoo /bin/bash
 source /etc/profile
@@ -103,7 +88,7 @@ emerge --sync
 emerge --oneshot sys-apps/portage
 
 eselect profile list
-eselect profile set 10
+eselect profile set 
 
 echo Europe/Berlin > /etc/timezone
 rm /etc/localtime
@@ -126,38 +111,13 @@ mkdir -p /etc/portage/package.unmask
 ```
 
 ```shell
-# mount Portage TMPDIR on tmpfs
-echo "tmpfs /var/tmp/portage tmpfs size=8G,uid=portage,gid=portage,mode=775 0 0" >> /etc/fstab
-mount /var/tmp/portage
-# create per-package choices for tmpfs
-mkdir /etc/portage/env
-echo "PORTAGE_TMPDIR=/var/tmp/notmpfs" >> /etc/portage/env/notmpfs.conf
+emerge -a app-portage/cpuid2cpuflags
+emerge -a app-misc/screen tmux eix
+emerge -a eselect-repository
 
-mkdir /var/tmp/notmpfs
-chown portage:portage /var/tmp/notmpfs
-chmod 775 /var/tmp/portage
+emerge -a --verbose --update --deep --with-bdeps=y --newuse --keep-going --backtrack=30 @world
 
-# create a package.env containing a list of packages that are too big for a tmpfs /var/tmp/portage
-echo "app-office/libreoffice notmpfs.conf" >> /etc/portage/package.env
-echo "dev-lang/ghc notmpfs.conf" >> /etc/portage/package.env
-echo "dev-lang/mono notmpfs.conf" >> /etc/portage/package.env
-echo "dev-lang/rust notmpfs.conf" >> /etc/portage/package.env
-echo "dev-lang/spidermonkey notmpfs.conf" >> /etc/portage/package.env
-echo "mail-client/thunderbird notmpfs.conf" >> /etc/portage/package.env
-echo "sys-devel/clang notmpfs.conf" >> /etc/portage/package.env
-echo "sys-devel/gcc notmpfs.conf" >> /etc/portage/package.env
-echo "sys-devel/llvm notmpfs.conf" >> /etc/portage/package.env
-echo "www-client/chromium notmpfs.conf" >> /etc/portage/package.env
-echo "www-client/firefox notmpfs.conf" >> /etc/portage/package.env
-```
-
-```shell
-emerge --ask app-portage/cpuid2cpuflags
-emerge --ask app-misc/screen tmux eix
-
-emerge --ask --verbose --update --deep --with-bdeps=y --newuse --keep-going --backtrack=30 @world
-
-emerge --ask dev-vcs/git
+emerge -a dev-vcs/git
 ```
 
 ## Configure /etc/fstab - add LUKS partition and boot partition
@@ -168,54 +128,30 @@ nano /etc/fstab
 > # add your partitions according to the blkid output
 ```
 
-## Install kernel sources and firmware
+## Install kernel bin and firmware
 ```shell
-emerge --ask --verbose sys-kernel/gentoo-sources
-emerge --ask --verbose sys-kernel/genkernel
-emerge --ask --verbose sys-fs/cryptsetup
-emerge --ask --verbose sys-kernel/linux-firmware
-```
-
-## Configure genkernel.conf
-```shell
-cp -p /etc/genkernel.conf /etc/genkernel.conf.ORIG
-nano /etc/genkernel.conf
-
-> # add some stuff for LUKS and LVM
-...
-MAKEOPTS="$(portageq envvar MAKEOPTS)"
-...
-LVM="yes"
-...
-LUKS="yes"
-...
-```
-## Compile your kernel
-```shell
-genkernel all
-> # configure it according to your needs (depends on hardware)
-> # for example remove everything related to AMD if you're using intel -
-> # except when using an AMD GPU then it get's tricky,
-> # but I'm not going to explain kernel setings here.
+emerge -a sys-fs/cryptsetup
+emerge -a sys-kernel/linux-firmware
+emerge -a sys-kernel/gentoo-kernel-bin
 ```
 
 ## Install and configure GRUB
 ```shell
 echo "sys-boot/grub device-mapper" > /etc/portage/package.use/grub
-emerge --ask --verbose sys-boot/grub
-grub-install --target=x86_64-efi --efi-directory=/boot
-
-blkid  | grep crypto_LUKS
-> # copy UUID, add it to /etc/default/grub, add systemd
+emerge -a --verbose sys-boot/grub
+grub-install --target=arm64-efi --efi-directory=/boot
 
 cp /etc/default/grub /etc/default/grub.ORIG
 nano /etc/default/grub
-> GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd dolvm crypt_root=UUID=blablabla root=/dev/mapper/gentoo-vg-root"
+> "GRUB_CMDLINE_LINUX="init=/usr/lib/systemd/systemd"
 grub-mkconfig -o /boot/grub/grub.cfg
 ```
 
 ## set root passwd
 ```shell
 passwd
+useradd -m -G wheel,audio,video,usb,cdrom,input -s /bin/bash smeya
+passwd smeya
+emerge -a sudo
+nano -w /etc/sudoers
 ```
- 

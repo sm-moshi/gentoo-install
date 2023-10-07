@@ -1,0 +1,3 @@
+media-video/ffmpeg vpx cpudetection -frei0r
+media-libs/mlt -frei0r
+#media-libs/opencv -lto

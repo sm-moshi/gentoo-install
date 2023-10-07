@@ -1,8 +1,0 @@
-dev-lang/rust-bin rust-analyzer rustfmt
-virtual/rust rustfmt
-sys-devel/gcc -pgo
-dev-lang/python pgo
-#sys-devel/clang-runtime sanitize
-# required by sys-devel/llvmgold-16::gentoo
-# required by llvmgold (argument)
-#=sys-devel/llvm-16.0.6 binutils-plugin
