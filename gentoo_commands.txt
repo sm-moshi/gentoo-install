@@ -6,13 +6,3 @@ mount --types proc /proc /mnt/gentoo/proc && mount --rbind /sys /mnt/gentoo/sys 
 chroot /mnt/gentoo /bin/bash ; source /etc/profile; export PS1="(chroot) ${PS1}";
 
 env-update && source /etc/profile && export PS1="(chroot) $PS1"
-
-dracut --hostonly -k /lib/modules/5.15.9-gentoo-dist/ --kver 5.15.9-gentoo-dist -f /efi/efi/gentoo/initramfs-5.15.9-gentoo-dist.img
-
-efibootmgr --disk /dev/nvme0n1 --part 1 --create --label "Gentoo ZFS 5.15.9" --loader "efi\gentoo\vmlinuz-5.15.9-gentoo-dist.efi" --unicode 'root=ZFS=rpool/ROOT/gentoo ro initrd=\efi\gentoo\amd-uc.img initrd=\efi\gentoo\initramfs-5.15.9-gentoo-dist.img resume=/dev/nvme0n1p2 resume=/dev/nvme1n1p2'
-
-efibootmgr --disk /dev/nvme0n1 --part 1 --create --label "Gentoo ZFS 5.15.9 with zswap" --loader "efi\gentoo\vmlinuz-5.15.9-gentoo-dist.efi" --unicode 'root=ZFS=rpool/ROOT/gentoo ro initrd=\efi\gentoo\amd-uc.img initrd=\efi\gentoo\initramfs-5.15.9-gentoo-dist.img resume=/dev/nvme0n1p2 resume=/dev/nvme1n1p2 zswap.enabled=1 zswap.compressor=zstd'
-
-Mama: 53505535941854647824
-
-emerge -a networkmanager cifs-utils nfs-utils rng-tools
