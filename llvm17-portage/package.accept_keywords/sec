@@ -1,0 +1,4 @@
+mail-mta/proton-mail-bridge ~*
+dev-util/breakpad ~*
+dev-libs/linux-syscall-support ~*
+dev-embedded/libdisasm ~*

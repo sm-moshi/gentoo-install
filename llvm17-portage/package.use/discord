@@ -1,0 +1,5 @@
+net-im/discord appindicator
+# required by dev-libs/libayatana-appindicator-0.5.92::gentoo
+# required by net-im/discord-0.0.28::gentoo[appindicator]
+# required by discord (argument)
+>=dev-libs/libdbusmenu-16.04.0-r2 gtk3

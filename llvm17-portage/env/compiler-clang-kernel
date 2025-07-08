@@ -1,0 +1,4 @@
+# This is added to make options by linux-mod.eclass
+BUILD_FIXES="LLVM=1 LLVM_IAS=1"
+
+# CC/CCX and other tools must match genkernel config

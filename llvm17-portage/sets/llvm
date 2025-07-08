@@ -1,0 +1,15 @@
+sys-devel/clang-common
+sys-devel/clang-runtime
+sys-devel/clang
+sys-devel/lld
+sys-devel/llvm-common
+sys-devel/llvm
+sys-libs/compiler-rt
+sys-libs/compiler-rt-sanitizers
+sys-libs/libcxx
+sys-libs/libcxxabi
+sys-libs/libomp
+sys-libs/llvm-libunwind
+sys-devel/clang-toolchain-symlinks
+sys-devel/llvm-toolchain-symlinks
+sys-devel/lld-toolchain-symlinks

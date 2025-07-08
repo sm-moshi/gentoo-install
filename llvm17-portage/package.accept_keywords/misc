@@ -1,0 +1,17 @@
+app-portage/emlop ~*
+app-backup/mkstage4 **
+sys-process/bpytop ~*
+app-misc/screenfetch ~*
+net-im/discord **
+dev-libs/sentry-native ~*
+app-cdr/cdrtools **
+app-misc/cpufetch **
+x11-apps/ocs-url **
+app-misc/github-desktop-bin ~*
+dev-vcs/github-desktop ~*
+kde-misc/bismuth **
+app-misc/fastfetch ~*
+dev-libs/yyjson ~*
+sys-fs/duperemove **
+net-misc/freerdp **
+sys-apps/bat-extras ~*

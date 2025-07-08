@@ -1,0 +1,12 @@
+# Firefox
+www-client/firefox geckodriver hwaccel openh264 -X -screencast
+# required by www-client/firefox-116.0.3::gentoo[system-libvpx]
+# required by firefox (argument)
+>=media-libs/libvpx-1.13.0 postproc
+# Thunderbird
+mail-client/thunderbird hwaccel -pulseaudio -X -openh264
+# Librewolf
+www-client/librewolf -X hwaccel openh264 geckodriver -screencast
+# required by www-client/librewolf-120.0_p2::librewolf[pgo,-X]
+# required by librewolf (argument)
+>=gui-libs/wlroots-0.17.0 tinywl

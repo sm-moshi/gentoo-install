@@ -1,0 +1,4 @@
+media-video/ffmpeg vpx cpudetection frei0r
+media-video/pipewire extra ffmpeg
+<=media-video/mediainfo-23.10 -wxwidgets
+media-video/vlc dav1d libass optimisememory opud skins srt theora vnc vpx archive

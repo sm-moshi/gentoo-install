@@ -1,0 +1,7 @@
+media-libs/phonon::kde **
+media-libs/phonon-vlc::kde **
+sys-auth/polkit-qt::kde **
+net-libs/signond::kde **
+net-libs/accounts-qt::kde **
+#kde-apps/kmime::kde **
+kde-frameworks/extra-cmake-modules::kde **

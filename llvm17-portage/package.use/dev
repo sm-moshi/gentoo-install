@@ -1,0 +1,19 @@
+sys-devel/clang-common default-compiler-rt default-lld llvm-libunwind
+dev-lang/rust system-llvm rustfmt
+sys-devel/clang-runtime sanitize
+sys-devel/llvm binutils-plugin
+sys-devel/binutils gold
+sys-devel/gcc graphite
+dev-libs/gmp -cpudetection
+sys-apps/util-linux tty-helpers
+dev-vcs/mercurial gpg rust tk
+dev-util/shadowman sccache
+# required by sys-apps/bat-extras-2023.09.19-r1::guru
+# required by bat-extras (argument)
+>=virtual/rust-1.74.1 rustfmt
+# required by virtual/rust-1.74.1::gentoo
+# required by dev-util/git-delta-0.16.5::gentoo
+# required by sys-apps/bat-extras-2023.09.19-r1::guru
+# required by bat-extras (argument)
+>=dev-lang/rust-bin-1.74.1 rustfmt
+

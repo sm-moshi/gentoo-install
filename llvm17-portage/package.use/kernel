@@ -1,0 +1,5 @@
+sys-kernel/gentoo-sources experimental symlink
+sys-fs/zfs-kmod custom-cflags #modules-sign
+sys-fs/zfs custom-cflags
+sys-boot/grub libzfs
+sys-kernel/linux-firmware compress-zstd initramfs unknown-license

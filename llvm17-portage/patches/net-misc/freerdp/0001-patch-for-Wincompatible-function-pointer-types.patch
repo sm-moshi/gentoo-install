@@ -1,0 +1,26 @@
+From 4166c61be6814d70b21464f1872d64b3b6b78616 Mon Sep 17 00:00:00 2001
+From: William Blake <you@example.com>
+Date: Tue, 28 Nov 2023 15:00:21 +0300
+Subject: [PATCH] patch for -Wincompatible-function-pointer-types
+
+add explicit cast to OBJECT_NEW_FN type
+---
+ client/Wayland/wlfreerdp.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/client/Wayland/wlfreerdp.c b/client/Wayland/wlfreerdp.c
+index 65e29bc51..52f8f1858 100644
+--- a/client/Wayland/wlfreerdp.c
++++ b/client/Wayland/wlfreerdp.c
+@@ -634,7 +634,7 @@ static BOOL wlf_client_new(freerdp* instance, rdpContext* context)
+ 		return FALSE;
+ 
+ 	obj = ArrayList_Object(wfl->events);
+-	obj->fnObjectNew = uwac_event_clone;
++	obj->fnObjectNew = (OBJECT_NEW_FN) uwac_event_clone;
+ 	obj->fnObjectFree = free;
+ 
+ 	InitializeCriticalSection(&wfl->critical);
+-- 
+2.41.0
+

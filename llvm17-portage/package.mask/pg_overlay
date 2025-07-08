@@ -1,0 +1,7 @@
+#dev-lang/rust::pg_overlay
+#sys-devel/llvm::pg_overlay
+#sys-devel/clang::pg_overlay
+#mail-client/thunderbird::pg_overlay
+#www-client/firefox::pg_overlay
+dev-libs/protobuf::pg_overlay
+kde-plasma/kde-cli-tools::pg_overlay

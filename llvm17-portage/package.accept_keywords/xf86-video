@@ -1,0 +1,7 @@
+x11-drivers/xf86-video-fbdev **
+media-libs/mesa **
+dev-util/clinfo ~*
+virtual/opencl *
+dev-libs/opencl-icd-loader *
+dev-util/opencl-headers *
+dev-libs/pocl *

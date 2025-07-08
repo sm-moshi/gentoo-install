@@ -1,0 +1,10 @@
+dev-qt/* ~*
+dev-qt/qt-creator ~*
+dev-qt/qtbase ~*
+dev-qt/qtbase:6 **
+dev-qt/*:6 **
+#~dev-qt/qttranslations-6.9999 **
+#~dev-qt/qttools-6.9999 **
+#~dev-qt/qtdeclarative-6.9999 **
+#~dev-qt/qtshadertools-6.9999 **
+#~dev-qt/qtwayland-6.9999 **

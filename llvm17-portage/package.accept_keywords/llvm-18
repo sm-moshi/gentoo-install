@@ -1,0 +1,24 @@
+#=dev-ml/llvm-ocaml-18.0.0_pre** **
+#=dev-python/lit-18.0.0_pre** **
+#=dev-util/lldb-18.0.0_pre** **
+#=dev-python/clang-python-18.0.0_pre** **
+#=sys-devel/clang-18.0.0_pre** **
+#=sys-devel/clang-common-18.0.0_pre** **
+#=sys-devel/clang-runtime-18.0.0_pre** **
+#=sys-devel/lld-18.0.0_pre** **
+#=sys-devel/llvm-18.0.0_pre** **
+#=sys-devel/llvm-common-18.0.0_pre** **
+#=sys-libs/compiler-rt-18.0.0_pre** **
+#=sys-libs/compiler-rt-sanitizers-18.0.0_pre** **
+#=sys-libs/libcxx-18.0.0_pre** **
+#=sys-libs/libcxxabi-18.0.0_pre** **
+#=sys-libs/libcxxrt-18.0.0_pre** **
+#=sys-libs/libomp-18.0.0_pre** **
+#=sys-libs/llvm-libunwind-18.0.0_pre** **
+#=dev-libs/libclc-18.0.0_pre** **
+#=dev-libs/mlir-18.0.0_pre** **
+
+#~sys-devel/llvmgold-18 **
+#~sys-devel/clang-toolchain-symlinks-18 **
+#~sys-devel/lld-toolchain-symlinks-18 **
+#~sys-devel/llvm-toolchain-symlinks-18 **

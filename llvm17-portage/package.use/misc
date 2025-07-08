@@ -1,0 +1,18 @@
+app-portage/eix::mv optimization strong-optimization security strong-security tools jumbo-build -protobuf
+app-shells/bash plugins
+sys-block/parted device-mapper
+sys-apps/xdg-desktop-portal flatpak
+sys-apps/flatpak X introspection
+# required by x11-libs/wxGTK-3.2.2.1-r3::gentoo
+# required by x11-libs/wxGTK (argument)
+>=dev-libs/libpcre2-10.42-r1 pcre32
+# (dependency required by "@selected" [set])
+# (dependency required by "@world" [argument])
+# The following REQUIRED_USE flag constraints are unsatisfied:
+# tiff? ( X ) spell? ( X )
+>=x11-libs/wxGTK-3.2.2.1-r3 X
+# required by media-libs/sdl2-ttf-2.20.2::gentoo
+# required by net-misc/freerdp-3.0.0_beta3::gentoo[sdl]
+# required by @selected
+# required by @world (argument)
+>=media-libs/freetype-2.13.2 harfbuzz utils

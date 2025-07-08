@@ -1,0 +1,6 @@
+#app-office/libreoffice **
+dev-libs/liborcus **
+dev-libs/libixion **
+app-text/libetonyek **
+dev-cpp/libcmis **
+dev-python/zxcvbn **
